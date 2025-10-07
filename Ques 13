@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+// Recursive function to reverse a string
+string reverseString(string s) {
+    if (s.empty()) return ""; // base case: empty string
+    return reverseString(s.substr(1)) + s[0]; // reverse rest + first char
+}
+
+int main() {
+    string str;
+    cin >> str;
+
+    cout << reverseString(str) << endl;
+    return 0;
+}
