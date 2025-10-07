@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+
+    if (n != m) {
+        cout << "Not a square hall!" << endl;
+        return 0;
+    }
+
+    vector<vector<int>> hall(n, vector<int>(m));
+
+    // Input the matrix
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> hall[i][j];
+        }
+    }
+
+    long long primarySum = 0, secondarySum = 0;
+
+    for (int i = 0; i < n; i++) {
+        primarySum += hall[i][i];          
+        secondarySum += hall[i][n - i - 1]; 
+    }
+
+    cout << "1st Diagonal (↘): " << primarySum << endl;
+    cout << "2nd Diagonal (↙): " << secondarySum << endl;
+
+    return 0;
+}
