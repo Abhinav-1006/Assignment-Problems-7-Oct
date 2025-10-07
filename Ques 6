@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <climits> 
+using namespace std;
+
+int main() {
+    int rows, cols;
+    cin >> rows >> cols;
+
+    vector<vector<int>> island(rows, vector<int>(cols));
+
+   
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cin >> island[i][j];
+        }
+    }
+
+    int maxRow = -1;
+    long long maxGold = LLONG_MIN; 
+
+    for (int i = 0; i < rows; i++) {
+        long long sum = 0;
+        for (int j = 0; j < cols; j++) {
+            sum += island[i][j];
+        }
+        if (sum > maxGold) {
+            maxGold = sum;
+            maxRow = i;
+        }
+    }
+
+    cout << "Row " << (maxRow + 1) << " (sum=" << maxGold << ")" << endl;
+    return 0;
+}
