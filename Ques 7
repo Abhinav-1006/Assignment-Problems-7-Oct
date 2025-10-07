@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int rows, cols;
+    cin >> rows >> cols;
+
+    vector<vector<int>> matrix(rows, vector<int>(cols));
+
+   
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+
+    vector<int> spiral;
+    int top = 0, bottom = rows - 1, left = 0, right = cols - 1;
+
+    
+    while (top <= bottom && left <= right) {
+
+        for (int j = left; j <= right; j++)
+            spiral.push_back(matrix[top][j]);
+        top++;
+
+        for (int i = top; i <= bottom; i++)
+            spiral.push_back(matrix[i][right]);
+        right--;
+
+        if (top <= bottom) {
+            for (int j = right; j >= left; j--)
+                spiral.push_back(matrix[bottom][j]);
+            bottom--;
+        }
+
+        if (left <= right) {
+            for (int i = bottom; i >= top; i--)
+                spiral.push_back(matrix[i][left]);
+            left++;
+        }
+    }
+
+  
+    cout << "[";
+    for (int i = 0; i < spiral.size(); i++) {
+        cout << spiral[i];
+        if (i != spiral.size() - 1)
+            cout << ",";
+    }
+    cout << "]" << endl;
+
+    return 0;
+}
